@@ -16,14 +16,15 @@ document.addEventListener('DOMContentLoaded', function() {
     mine.style.display = 'inline-block';
     mine.style.visibility = 'hidden'; 
     mine.style.whiteSpace = 'nowrap';
-    wordsWrapper.style.marginLeft = '-110px'; 
+
 
     function loadWord() {
         var currentWord = words[currentWordIndex];
         var text = currentWord.innerText;
         var index = 0;
         currentWord.style.display = 'inline';
-        currentWord.style.visibility = 'visible'; // Making the word visible here
+        currentWord.style.visibility = 'visible'; 
+        currentWord.style.fontSize = '35px'
         interval = setInterval(function() {
             currentWord.textContent = text.substring(0, index);
             currentWord.appendChild(cursor);
