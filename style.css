@@ -45,7 +45,18 @@ Version: 1.0
 
 
 
+.words-wrapper {
+    word-wrap: break-word;
+    max-width: 100%; /* Ensures that the container doesn't exceed the width of its parent */
+    width: auto; /* Allows the container to adjust its width based on the content */
+}
 
+@media only screen and (max-width: 768px) {
+    .words-wrapper {
+        /* Adjust the width for smaller screens */
+        max-width: 90%; /* Example: 90% of the viewport width */
+    }
+}
 
 
 :root{
