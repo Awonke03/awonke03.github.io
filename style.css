@@ -43,6 +43,134 @@ Version: 1.0
 
 /*** Miscellaneous ***/
 
+
+
+
+
+
+:root{
+  --primary-color: #edf2fc;
+  --secondary-color: #212121;
+}
+:root {
+  --primary-color: #22222; /* Set primary color to black */
+  --secondary-color: #ffffff; /* Set secondary color to white */
+}
+
+
+.expertise-box {
+  border: 2px solid var(--secondary-color); /* Set border color to white */
+}
+
+/* If you want to specifically target the borders of each box within expertise-box */
+.expertise-box .languages-box,
+.expertise-box .technologies-box {
+  border: 2px solid var(--secondary-color); /* Set border color to white */
+}
+
+
+.info a{
+  background: var(--secondary-color);
+  padding: 10px 18px;
+  text-decoration: none;
+  color: var(--primary-color);
+  display: inline-block;
+  margin: 30px 0;
+  border-radius: 5px;
+}
+.img-box{
+  width: 45%;
+  height: 80%;
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+}
+.img-box img{
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  transition: bottom 1s, left 1s;
+}
+.img-box:hover .back-img{
+  bottom: 40px;
+}
+.img-box:hover .main-img{
+  left: 54%;
+}
+.social-links {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--primary-color);
+  padding: 20px;
+  text-align: center;
+}
+
+
+.expertise-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.languages-box,
+.technologies-box {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px;
+  margin: 40px 0 20px; /* Adjust the top and bottom margin */
+  border-radius: 5px;
+  text-align: center; /* Center text within the boxes */
+  border: 2px solid var(--secondary-color); /* Add border */
+}
+
+.languages-box h2,
+.technologies-box h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.languages-box ul,
+.technologies-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.languages-box li,
+.technologies-box li {
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: inline-flex; /* Display the list items horizontally */
+  align-items: center;
+}
+
+.languages-box i,
+.technologies-box i {
+  font-size: 32px; /* Adjust the icon size as needed */
+  color: var(--secondary-color);
+  transition: color 0.3s ease;
+  margin-right: 8px; /* Adjust the margin as needed */
+}
+
+.languages-box li::before,
+.technologies-box li::before {
+  content: '\25B6'; /* Unicode character for right-pointing triangle */
+  font-size: 18px; /* Adjust the size of the triangle */
+  margin-right: 8px; /* Adjust the spacing between triangle and text */
+}
+
+/* Change color on hover */
+.languages-box i:hover,
+.technologies-box i:hover {
+  color: #ff4321;
+}
+
+/* Existing CSS styles... */
+
 html {
   overflow-x: hidden;
   height: 100%;
