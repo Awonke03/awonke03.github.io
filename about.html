@@ -41,6 +41,20 @@
 
     <!-- Skills Section Styles -->
     <style>
+        /* Remove outer white borders injected by template */
+        .expertise-section,
+        #expertise,
+        .content.expertise-section {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        /* Remove triangle ::before pseudo-elements from theme li styles */
+        .languages-box ul li::before,
+        .technologies-box ul li::before {
+            display: none !important;
+            content: none !important;
+        }
         .expertise-section {
             width: 100%;
             padding: 0 0 20px 0;
