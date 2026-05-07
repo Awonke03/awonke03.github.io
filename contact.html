@@ -1,12 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <title>Contact - Awonke Nomandondo Personal Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="icon" href="logo.png" type="image/x-icon">
-
+    <link rel="icon" href="logo.png" type="image/x-icon">
 
     <!-- Template Google Fonts -->
     <link href="../../css.css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -41,11 +40,7 @@
 </head>
 
 <body class="contact">
-<!-- Live Style Switcher Starts - demo only -->
 
-</div>
-
-<!-- Live Style Switcher Ends - demo only -->
 <!-- Header Starts -->
 <header class="header" id="navbar-collapse-toggle">
     <!-- Fixed Navigation Starts -->
@@ -74,7 +69,6 @@
                 <h2>Contact</h2>
             </a>
         </li>
-        
     </ul>
     <!-- Fixed Navigation Ends -->
     <!-- Mobile Menu Starts -->
@@ -89,19 +83,20 @@
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-               
             </ul>
         </div>
     </nav>
     <!-- Mobile Menu Ends -->
 </header>
 <!-- Header Ends -->
+
 <!-- Page Title Starts -->
 <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
     <h1>get in <span>touch</span></h1>
     <span class="title-bg">contact</span>
 </section>
 <!-- Page Title Ends -->
+
 <!-- Main Content Starts -->
 <section class="main-content revealator-slideup revealator-once revealator-delay1">
     <div class="container">
@@ -119,38 +114,43 @@
                     <span class="d-block">call me</span>+27 789751929
                 </p>
                 <ul class="social list-unstyled pt-1 mb-5">
-                    <li class="linkedin"><a href="https://www.linkedin.com/in/awonke-nomandondo-637548239/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg></a>
-            </li>
+                    <li class="linkedin">
+                        <a href="https://www.linkedin.com/in/awonke-nomandondo-637548239/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- Left Side Ends -->
+
             <!-- Contact Form Starts -->
             <div class="col-12 col-lg-8">
-                <form class="contactform" method="post" action="php/process-form.php">
+                <!-- NOTE: action and method removed — EmailJS handles submission via JavaScript -->
+                <form class="contactform" id="contact-form">
                     <div class="contactform">
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <input type="text" name="name" placeholder="YOUR NAME">
+                                <input type="text" name="name" id="name" placeholder="YOUR NAME" required>
                             </div>
                             <div class="col-12 col-md-4">
-                                <input type="email" name="email" placeholder="YOUR EMAIL">
+                                <input type="email" name="email" id="email" placeholder="YOUR EMAIL" required>
                             </div>
                             <div class="col-12 col-md-4">
-                                <input type="text" name="subject" placeholder="YOUR SUBJECT">
+                                <input type="text" name="subject" id="subject" placeholder="YOUR SUBJECT" required>
                             </div>
                             <div class="col-12">
-                                <textarea name="message" placeholder="YOUR MESSAGE"></textarea>
-                                <button type="submit" class="button">
+                                <textarea name="message" id="message" placeholder="YOUR MESSAGE" required></textarea>
+                                <button type="submit" class="button" id="submit-btn">
                                     <span class="button-text">Send Message</span>
                                     <span class="button-icon fa fa-send"></span>
                                 </button>
                             </div>
                             <div class="col-12 form-message">
-                                <span class="output_message text-center font-weight-600 text-uppercase"></span>
+                                <span class="output_message text-center font-weight-600 text-uppercase" id="output_message"></span>
                             </div>
                         </div>
                     </div>
@@ -159,8 +159,9 @@
             <!-- Contact Form Ends -->
         </div>
     </div>
-
 </section>
+<!-- Main Content Ends -->
+
 <!-- Template JS Files -->
 <script src="jquery-3.5.0.min.js"></script>
 <script src="styleswitcher.js"></script>
@@ -175,6 +176,53 @@
 <script src="bootstrap.js"></script>
 <script src="custom.js"></script>
 
-</body>
+<!-- ✅ EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<!-- ✅ EmailJS Integration -->
+<script>
+    // 🔁 Replace the values below with your actual EmailJS credentials
+    const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // Account → API Keys
+    const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // Email Services
+    const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // Email Templates
+
+    // Initialise EmailJS with your public key
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default page reload
+
+        const submitBtn  = document.getElementById("submit-btn");
+        const btnText    = submitBtn.querySelector(".button-text");
+        const output     = document.getElementById("output_message");
+
+        // Disable button and show sending state
+        submitBtn.disabled = true;
+        btnText.textContent = "Sending...";
+        output.textContent  = "";
+        output.style.color  = "";
+
+        // Send the form using EmailJS
+        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+            .then(function () {
+                // ✅ Success
+                output.textContent = "Message sent successfully!";
+                output.style.color = "green";
+                document.getElementById("contact-form").reset();
+            })
+            .catch(function (error) {
+                // ❌ Error
+                console.error("EmailJS error:", error);
+                output.textContent = "Oops! Something went wrong. Please try again.";
+                output.style.color = "red";
+            })
+            .finally(function () {
+                // Re-enable button
+                submitBtn.disabled = false;
+                btnText.textContent = "Send Message";
+            });
+    });
+</script>
+
+</body>
 </html>
