@@ -271,19 +271,24 @@
         submitBtn.disabled = true;
         btnText.textContent = "Sending...";
 
-        // Send BOTH emails in parallel
-        Promise.all([
-            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_MINE,  form),
-            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_REPLY, form)
-        ])
+        // Step 1: Send to YOUR inbox first (this is the one that matters)
+        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_MINE, form)
         .then(function () {
-            // ✅ Success — green background, black text
+            // ✅ Your inbox received it — show success immediately
             output.textContent = "✓ Message sent successfully!";
             output.classList.add("success");
+
+            // Step 2: Silently attempt auto-reply to sender (failure won't affect UI)
+            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_REPLY, form)
+                .catch(function (err) {
+                    // Auto-reply failed silently — user already saw success
+                    console.warn("Auto-reply failed (non-critical):", err);
+                });
+
             form.reset();
         })
         .catch(function (error) {
-            // ❌ Failure — show popup
+            // ❌ YOUR inbox failed — show popup
             console.error("EmailJS error:", error);
             document.getElementById("ej-popup-overlay").classList.add("active");
         })
