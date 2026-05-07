@@ -37,6 +37,60 @@
 
     <!-- Modernizr JS File -->
     <script src="modernizr.custom.js"></script>
+
+    <!-- EmailJS & Form Custom Styles -->
+    <style>
+        /* SUCCESS MESSAGE - !important overrides theme */
+        #output_message.success {
+            display: block !important;
+            background: #27ae60 !important;
+            color: #000000 !important;
+            padding: 14px 24px !important;
+            border-radius: 30px !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            letter-spacing: 1px !important;
+            margin-top: 16px !important;
+            width: 100% !important;
+            border: none !important;
+            -webkit-text-fill-color: #000000 !important;
+        }
+        /* FAILURE POPUP */
+        #ej-popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.80);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+        }
+        #ej-popup-overlay.active { display: flex !important; }
+        #ej-popup-box {
+            background: #1a1a1a;
+            border: 2px solid #e74c3c;
+            border-radius: 12px;
+            padding: 40px 50px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 0 40px rgba(231,76,60,0.4);
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+        #ej-popup-box .popup-icon { font-size: 52px; color: #e74c3c; margin-bottom: 16px; display: block; }
+        #ej-popup-box h3 { color: #fff !important; font-size: 20px !important; font-weight: 700 !important; margin-bottom: 10px !important; text-transform: uppercase; letter-spacing: 1px; }
+        #ej-popup-box p  { color: #aaa !important; font-size: 14px !important; margin-bottom: 24px !important; line-height: 1.6; }
+        #ej-popup-close  {
+            background: #e74c3c !important; color: #fff !important; border: none !important;
+            padding: 10px 32px !important; border-radius: 30px !important; font-size: 14px !important;
+            font-weight: 600 !important; cursor: pointer !important; text-transform: uppercase; letter-spacing: 1px; transition: background 0.2s;
+        }
+        #ej-popup-close:hover { background: #c0392b !important; }
+    </style>
 </head>
 
 <body class="contact">
@@ -178,84 +232,6 @@
 
 <!-- ✅ EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<!-- ✅ Popup overlay styles -->
-<style>
-    #ej-popup-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.75);
-        z-index: 99999;
-        align-items: center;
-        justify-content: center;
-    }
-    #ej-popup-overlay.active {
-        display: flex;
-    }
-    #ej-popup-box {
-        background: #1a1a1a;
-        border: 2px solid #e74c3c;
-        border-radius: 12px;
-        padding: 40px 50px;
-        text-align: center;
-        max-width: 420px;
-        width: 90%;
-        box-shadow: 0 0 40px rgba(231,76,60,0.4);
-        animation: popIn 0.3s ease;
-    }
-    @keyframes popIn {
-        from { transform: scale(0.8); opacity: 0; }
-        to   { transform: scale(1);   opacity: 1; }
-    }
-    #ej-popup-box .popup-icon {
-        font-size: 48px;
-        color: #e74c3c;
-        margin-bottom: 16px;
-    }
-    #ej-popup-box h3 {
-        color: #fff;
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    #ej-popup-box p {
-        color: #aaa;
-        font-size: 14px;
-        margin-bottom: 24px;
-    }
-    #ej-popup-close {
-        background: #e74c3c;
-        color: #fff;
-        border: none;
-        padding: 10px 32px;
-        border-radius: 30px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: background 0.2s;
-    }
-    #ej-popup-close:hover {
-        background: #c0392b;
-    }
-
-    /* Success message styling */
-    #output_message.success {
-        display: block;
-        background: #27ae60;
-        color: #000 !important;
-        padding: 14px 24px;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 1px;
-        margin-top: 16px;
-    }
-</style>
 
 <!-- ✅ Popup HTML -->
 <div id="ej-popup-overlay">
