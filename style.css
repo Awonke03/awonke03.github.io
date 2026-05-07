@@ -6,8 +6,7 @@
 
 @media only screen and (max-width: 768px) {
     .words-wrapper {
-        /* Adjust the width for smaller screens */
-        max-width: 90%; /* Example: 90% of the viewport width */
+        max-width: 90%;
     }
 }
 
@@ -17,19 +16,18 @@
   --secondary-color: #212121;
 }
 :root {
-  --primary-color: #22222; /* Set primary color to black */
-  --secondary-color: #ffffff; /* Set secondary color to white */
+  --primary-color: #22222;
+  --secondary-color: #ffffff;
 }
 
 
 .expertise-box {
-  border: 2px solid var(--secondary-color); /* Set border color to white */
+  /* border removed */
 }
 
-/* If you want to specifically target the borders of each box within expertise-box */
 .expertise-box .languages-box,
 .expertise-box .technologies-box {
-  border: 2px solid var(--secondary-color); /* Set border color to white */
+  /* border removed */
 }
 
 
@@ -86,10 +84,10 @@
   background: var(--primary-color);
   color: var(--secondary-color);
   padding: 20px;
-  margin: 40px 0 20px; /* Adjust the top and bottom margin */
+  margin: 40px 0 20px;
   border-radius: 5px;
-  text-align: center; /* Center text within the boxes */
-  border: 2px solid var(--secondary-color); /* Add border */
+  text-align: center;
+  /* border removed */
 }
 
 .languages-box h2,
@@ -108,32 +106,29 @@
 .technologies-box li {
   font-size: 18px;
   margin-bottom: 8px;
-  display: inline-flex; /* Display the list items horizontally */
+  display: inline-flex;
   align-items: center;
 }
 
 .languages-box i,
 .technologies-box i {
-  font-size: 32px; /* Adjust the icon size as needed */
+  font-size: 32px;
   color: var(--secondary-color);
   transition: color 0.3s ease;
-  margin-right: 8px; /* Adjust the margin as needed */
+  margin-right: 8px;
 }
 
 .languages-box li::before,
 .technologies-box li::before {
-  content: '\25B6'; /* Unicode character for right-pointing triangle */
-  font-size: 18px; /* Adjust the size of the triangle */
-  margin-right: 8px; /* Adjust the spacing between triangle and text */
+  content: '\25B6';
+  font-size: 18px;
+  margin-right: 8px;
 }
 
-/* Change color on hover */
 .languages-box i:hover,
 .technologies-box i:hover {
   color: #ff4321;
 }
-
-/* Existing CSS styles... */
 
 html {
   overflow-x: hidden;
@@ -163,7 +158,7 @@ body {
 }
 
 hr.separator {
-  border-top: 1px solid #252525;
+  /* border-top removed */
   margin: 70px auto 55px;
   max-width: 40%;
 }
@@ -230,7 +225,7 @@ body.light .title-bg {
 }
 
 body.light.about .box-stats {
-  border: 1px solid #ddd;
+  /* border removed */
 }
 
 body.light.about .c100,
@@ -248,7 +243,7 @@ body.light.about .resume-box .place:before {
 }
 
 body.light.about  .resume-box li:after {
-  border-left: 1px solid #ddd;
+  /* border-left removed */
 }
 
 body.light.about .c100 > span {
@@ -335,7 +330,7 @@ body.light.blog .page-item.active .page-link {
 
 
 body.light hr.separator {
-  border-top: 1px solid #ddd;
+  /* border-top removed */
 }
 
 @media (min-width: 992px) {
@@ -582,7 +577,7 @@ body.light hr.separator {
   .expertise-section {
     background: var(--primary-color);
     color: var(--secondary-color);
-    padding: 50px 20px; /* Adjust the padding as needed */
+    padding: 50px 20px;
     text-align: center;
   }
   
@@ -598,10 +593,10 @@ body.light hr.separator {
     background: var(--primary-color);
     color: var(--secondary-color);
     padding: 20px;
-    margin: 40px 0 20px; /* Adjust the top and bottom margin */
+    margin: 40px 0 20px;
     border-radius: 5px;
-    text-align: center; /* Center text within the boxes */
-    border: 2px solid var(--secondary-color); /* Add border */
+    text-align: center;
+    /* border removed */
   }
   
   .technologies-box h2,
@@ -620,110 +615,29 @@ body.light hr.separator {
   .languages-box li {
     font-size: 18px;
     margin-bottom: 8px;
-    display: inline-flex; /* Display the list items horizontally */
+    display: inline-flex;
     align-items: center;
   }
   
   .technologies-box i,
   .languages-box i {
-    font-size: 32px; /* Adjust the icon size as needed */
+    font-size: 32px;
     color: var(--secondary-color);
     transition: color 0.3s ease;
-    margin-right: 8px; /* Adjust the margin as needed */
+    margin-right: 8px;
   }
-  .expertise-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .technologies-box,
-  .languages-box {
-    background: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 20px;
-    margin: 40px 0 20px; /* Adjust the top and bottom margin */
-    border-radius: 5px;
-    text-align: center; /* Center text within the boxes */
-    border: 2px solid var(--secondary-color); /* Add border */
-  }
-  
-  .technologies-box h2,
-  .languages-box h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .technologies-box ul,
-  .languages-box ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .technologies-box li,
-  .languages-box li {
+
+  .technologies-box li::before,
+  .languages-box li::before {
+    content: '\25B6';
     font-size: 18px;
-    margin-bottom: 8px;
-    display: inline-flex; /* Display the list items horizontally */
-    align-items: center;
+    margin-right: 8px;
   }
   
-  .technologies-box i,
-  .languages-box i {
-    font-size: 32px; /* Adjust the icon size as needed */
-    color: var(--secondary-color);
-    transition: color 0.3s ease;
-    margin-right: 8px; /* Adjust the margin as needed */
-  }
-  
-  .technologies-box li::before,
-  .languages-box li::before {
-    content: '\25B6'; /* Unicode character for right-pointing triangle */
-    font-size: 18px; /* Adjust the size of the triangle */
-    margin-right: 8px; /* Adjust the spacing between triangle and text */
-  }
-  
-  /* Change color on hover */
   .technologies-box i:hover,
   .languages-box i:hover {
     color: #ff4321;
   }
-  .technologies-box i,
-  .languages-box i {
-    font-size: 32px; /* Adjust the icon size as needed */
-    color: var(--secondary-color);
-    transition: color 0.3s ease;
-    margin-right: 8px; /* Adjust the margin as needed */
-  }
-  
-  .technologies-box li::before,
-  .languages-box li::before {
-    content: '\25B6'; /* Unicode character for right-pointing triangle */
-    font-size: 18px; /* Adjust the size of the triangle */
-    margin-right: 8px; /* Adjust the spacing between triangle and text */
-  }
-  
-  /* Change color on hover */
-  .technologies-box i:hover,
-  .languages-box i:hover {
-    color: #ff4321;
-  }
-    
-  
-  .technologies-box li::before,
-  .languages-box li::before {
-    content: '\25B6'; /* Unicode character for right-pointing triangle */
-    font-size: 18px; /* Adjust the size of the triangle */
-    margin-right: 8px; /* Adjust the spacing between triangle and text */
-  }
-  
-  /* Change color on hover */
-  .technologies-box i:hover,
-  .languages-box i:hover {
-    color: #ff4321;
-  }
-  
 
   .header ul.icon-menu li.icon-box i {
     color: #ddd;
@@ -822,10 +736,10 @@ body.light hr.separator {
 }
 
 .home .bg:hover {
-  width: 80%; /* Increase width on hover */
-  filter: brightness(100%); /* Increase brightness on hover */
-  transform: scale(1.1); /* Zoom in effect on hover */
-  box-shadow: 0 0 40px rgba(255,255,255,.5); /* Lighter shadow on hover */
+  width: 80%;
+  filter: brightness(100%);
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255,255,255,.5);
 }
 
 
@@ -920,7 +834,7 @@ body.light hr.separator {
 .about .box-stats {
   padding: 20px 30px 25px 40px;
   border-radius: 5px;
-  border: 1px solid #252525;
+  /* border removed */
 }
 
 .about .box-stats.with-margin {
@@ -978,7 +892,7 @@ body.light hr.separator {
   top: 0;
   left: 20px;
   bottom: 0;
-  border-left: 1px solid #333;
+  /* border-left removed */
 }
 
 .about .resume-box .icon {
