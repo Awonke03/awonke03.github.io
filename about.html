@@ -38,75 +38,138 @@
 
     <!-- Modernizr JS File -->
     <script src="modernizr.custom.js"></script>
+
+    <!-- Skills Section Styles -->
+    <style>
+        .expertise-section {
+            width: 100%;
+            padding: 0 0 20px 0;
+        }
+        .expertise-box {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .languages-box,
+        .technologies-box {
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 24px 28px;
+            background: rgba(255,255,255,0.03);
+        }
+        .languages-box h2,
+        .technologies-box h2 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 18px;
+        }
+        .languages-box ul,
+        .technologies-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .languages-box ul li,
+        .technologies-box ul li {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            font-size: 13px;
+            font-weight: 500;
+            color: #ddd;
+            cursor: default;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
+            user-select: none;
+        }
+        .languages-box ul li:hover,
+        .technologies-box ul li:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.12);
+            color: #ffffff;
+        }
+        .languages-box ul li i,
+        .technologies-box ul li i {
+            font-size: 15px;
+            transition: transform 0.22s ease;
+        }
+        .languages-box ul li:hover i,
+        .technologies-box ul li:hover i {
+            transform: scale(1.3) rotate(-5deg);
+        }
+        /* Flask icon fix — white icon, subtle dark pill so it's always visible */
+        .flask-icon {
+            color: #ffffff !important;
+        }
+        /* Kafka icon fix — dark on dark, give it a light background */
+        .kafka-icon {
+            color: #ffffff !important;
+            background: rgba(255,255,255,0.15);
+            border-radius: 3px;
+            padding: 1px 3px;
+        }
+    </style>
 </head>
 
 <body class="about">
-<!-- Live Style Switcher Starts - demo only -->
-
-</div>
-
-<!-- Live Style Switcher Ends - demo only -->
 <!-- Header Starts -->
 <header class="header" id="navbar-collapse-toggle">
     <!-- Fixed Navigation Starts -->
     <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
         <li class="icon-box">
             <i class="fa fa-home"></i>
-            <a href="index.html">
-                <h2>Home</h2>
-            </a>
+            <a href="index.html"><h2>Home</h2></a>
         </li>
         <li class="icon-box active">
             <i class="fa fa-user"></i>
-            <a href="about.html">
-                <h2>About</h2>
-            </a>
+            <a href="about.html"><h2>About</h2></a>
         </li>
         <li class="icon-box">
             <i class="fa fa-briefcase"></i>
-            <a href="portfolio.html">
-                <h2>Portfolio</h2>
-            </a>
+            <a href="portfolio.html"><h2>Portfolio</h2></a>
         </li>
         <li class="icon-box">
             <i class="fa fa-envelope-open"></i>
-            <a href="contact.html">
-                <h2>Contact</h2>
-            </a>
+            <a href="contact.html"><h2>Contact</h2></a>
         </li>
-      
     </ul>
-    <!-- Fixed Navigation Ends -->
     <!-- Mobile Menu Starts -->
     <nav role="navigation" class="d-block d-lg-none">
         <div id="menuToggle">
             <input type="checkbox">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
             <ul class="list-unstyled" id="menu">
                 <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                 <li class="active"><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-              
             </ul>
         </div>
     </nav>
-    <!-- Mobile Menu Ends -->
 </header>
-<!-- Header Ends -->
-<!-- Page Title Starts -->
+
+<!-- Page Title -->
 <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
     <h1>ABOUT <span>ME</span></h1>
     <span class="title-bg">Resume</span>
 </section>
-<!-- Page Title Ends -->
-<!-- Main Content Starts -->
+
+<!-- Main Content -->
 <section class="main-content revealator-slideup revealator-once revealator-delay1">
     <div class="container">
         <div class="row">
-            <!-- Personal Info Starts -->
+            <!-- Personal Info -->
             <div class="col-12 col-lg-5 col-xl-6">
                 <div class="row">
                     <div class="col-12">
@@ -117,88 +180,92 @@
                     </div>
                     <div class="col-6">
                         <ul class="about-list list-unstyled open-sans-font">
-                            <li> <span class="title">first name :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">Awonke</span> </li>
-                            <li> <span class="title">last name :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">Nomandondo</span> </li>
-                            <li> <span class="title">Age :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">23 years</span> </li>
-                           
+                            <li><span class="title">first name :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">Awonke</span></li>
+                            <li><span class="title">last name :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">Nomandondo</span></li>
+                            <li><span class="title">Age :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">23 years</span></li>
                         </ul>
                     </div>
                     <div class="col-6">
                         <ul class="about-list list-unstyled open-sans-font">
-                            <li> <span class="title">Address :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">Tina Falls<br> PO Box 369 <br>Qumbu <br>5180</span> </li>
-                            <li> <span class="title">phone :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">+27 789751929</span> </li>
-                            <li> <span class="title">Email :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">nomandondoawonke@hotmail.com</span> </li>
-                            </ul>
+                            <li><span class="title">Address :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">Tina Falls<br>PO Box 369<br>Qumbu<br>5180</span></li>
+                            <li><span class="title">phone :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">+27 789751929</span></li>
+                            <li><span class="title">Email :</span> <span class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">nomandondoawonke@hotmail.com</span></li>
+                        </ul>
                     </div>
-                   
                 </div>
             </div>
-            <!-- Personal Info Ends -->
-            <!-- Boxes Starts -->
+            <!-- Boxes -->
             <div class="col-12 col-lg-7 col-xl-6 mt-5 mt-lg-0">
                 <div class="row">
-     
                     <div class="col-6">
                         <div class="box-stats with-margin">
                             <h3 class="poppins-font position-relative">7</h3>
                             <p class="open-sans-font m-0 position-relative text-uppercase">completed <span class="d-block">projects</span></p>
                         </div>
                     </div>
-                    
-        
-                    </div>
                 </div>
             </div>
-            <!-- Boxes Ends -->
         </div>
+
         <hr class="separator">
-        <!-- Skills Starts -->
-<div class="row">
-    <div class="col-12">
-        <h3 class="text-uppercase pb-4 pb-sm-5 mb-3 mb-sm-0 text-left text-sm-center custom-title ft-wt-600">My Skills</h3>
-    </div>
-    <div class="content expertise-section" id="expertise">
 
-        <div class="expertise-box">
-            <div class="languages-box">
-                <h2>Languages:</h2>
-                <ul>
-                    <li><i class="fab fa-cplusplus" style="color: #00599C;"></i> C++</li>
-                    <li><i class="fab fa-c" style="color: #A8B9CC;"></i> C</li>
-                    <li><i class="fab fa-java" style="color: #007396;"></i> Java</li>
-                    <li><i class="fab fa-python" style="color: #3776AB;"></i> Python</li>
-                    <li><i class="fab fa-r-project" style="color: #276DC3;"></i> R</li>
-                    <li><i class="fab fa-code" style="color: #A71D5D;"></i> Delphi</li>
-                    <li><i class="fas fa-database" style="color: #F29111;"></i> SQL</li>
-                    <li><i class="fab fa-js" style="color: #F7DF1E;"></i> JavaScript</li>
-                </ul>
+        <!-- ===== SKILLS ===== -->
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-uppercase pb-4 pb-sm-5 mb-3 mb-sm-0 text-left text-sm-center custom-title ft-wt-600">My Skills</h3>
             </div>
+            <div class="content expertise-section" id="expertise">
+                <div class="expertise-box">
 
-            <div class="technologies-box">
-                <h2>Technologies:</h2>
-                <ul>
-                    <li><i class="fas fa-database" style="color: #336791;"></i> PostgreSQL</li>
-                    <li><i class="fas fa-chart-bar" style="color: #2A9FD6;"></i> TABLEAU</li>
-                    <li><i class="fas fa-code" style="color: #1E90FF;"></i> Dash</li>
-                    <li><i class="fas fa-flask" style="color: #000000;"></i> Flask</li>
-                    <li><i class="fas fa-chart-pie" style="color: #EE652E;"></i> Plotly</li>
-                    <li><i class="fas fa-square-root-alt" style="color: #0076A8;"></i> MATLAB</li>
-                    <li><i class="fas fa-chart-area" style="color: #F2C811;"></i> Power BI</li>
-                    <li><i class="fab fa-python" style="color: #3776AB;"></i> Django</li>
-                    <li><i class="fas fa-database" style="color: #4DB33D;"></i> MongoDB</li>
-                    <li><i class="fas fa-rocket" style="color: #00B5A6;"></i> Streamlit</li>
-                    <li><i class="fab fa-kafka" style="color: #231F20;"></i> Kafka</li>
-                    <li><i class="fab fa-python" style="color: #FF6F61;"></i> PySpark</li>
-                    <li><i class="fab fa-hadoop" style="color: #66CCFF;"></i> Hadoop</li>
-                </ul>
+                    <!-- Languages -->
+                    <div class="languages-box">
+                        <h2>Languages:</h2>
+                        <ul>
+                            <li><i class="fab fa-cplusplus" style="color:#00599C;"></i> C++</li>
+                            <li><i class="fab fa-c" style="color:#A8B9CC;"></i> C</li>
+                            <li><i class="fab fa-java" style="color:#007396;"></i> Java</li>
+                            <li><i class="fab fa-python" style="color:#3776AB;"></i> Python</li>
+                            <li><i class="fab fa-r-project" style="color:#276DC3;"></i> R</li>
+                            <li><i class="fas fa-code" style="color:#A71D5D;"></i> Delphi</li>
+                            <li><i class="fas fa-database" style="color:#F29111;"></i> SQL</li>
+                            <li><i class="fab fa-js" style="color:#F7DF1E;"></i> JavaScript</li>
+                        </ul>
+                    </div>
+
+                    <!-- Technologies -->
+                    <div class="technologies-box">
+                        <h2>Technologies:</h2>
+                        <ul>
+                            <li><i class="fas fa-database" style="color:#336791;"></i> PostgreSQL</li>
+                            <li><i class="fas fa-chart-bar" style="color:#2A9FD6;"></i> TABLEAU</li>
+                            <li><i class="fas fa-code" style="color:#1E90FF;"></i> Dash</li>
+                            <!-- Flask: white icon so it's visible on dark background -->
+                            <li><i class="fas fa-flask flask-icon"></i> Flask</li>
+                            <li><i class="fas fa-chart-pie" style="color:#EE652E;"></i> Plotly</li>
+                            <li><i class="fas fa-square-root-alt" style="color:#0076A8;"></i> MATLAB</li>
+                            <li><i class="fas fa-chart-area" style="color:#F2C811;"></i> Power BI</li>
+                            <li><i class="fab fa-python" style="color:#3776AB;"></i> Django</li>
+                            <li><i class="fas fa-database" style="color:#4DB33D;"></i> MongoDB</li>
+                            <li><i class="fas fa-rocket" style="color:#00B5A6;"></i> Streamlit</li>
+                            <!-- Kafka: give a visible icon -->
+                            <li><i class="fas fa-stream kafka-icon"></i> Kafka</li>
+                            <li><i class="fab fa-python" style="color:#FF6F61;"></i> PySpark</li>
+                            <li><i class="fas fa-server" style="color:#66CCFF;"></i> Hadoop</li>
+                            <!-- New additions -->
+                            <li><i class="fas fa-dharmachakra" style="color:#326CE5;"></i> Kubernetes</li>
+                            <li><i class="fas fa-box-open" style="color:#892CA0;"></i> Podman</li>
+                            <li><i class="fas fa-snowflake" style="color:#29B5E8;"></i> Snowflake</li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
         <!-- Skills Ends -->
+
         <hr class="separator mt-1">
-        <!-- Experience & Education Starts -->
+
+        <!-- Experience & Education -->
         <div class="row">
             <div class="col-12">
                 <h3 class="text-uppercase pb-5 mb-0 text-left text-sm-center custom-title ft-wt-600">Experience <span>&</span> Education</h3>
@@ -206,35 +273,25 @@
             <div class="col-lg-6 m-15px-tb">
                 <div class="resume-box">
                     <ul>
-                         <li>
-                            <div class="icon">
-                                <i class="fa fa-briefcase"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">Feb 2025 -present</span>
+                        <li>
+                            <div class="icon"><i class="fa fa-briefcase"></i></div>
+                            <span class="time open-sans-font text-uppercase">Feb 2025 - Present</span>
                             <h5 class="poppins-font text-uppercase">Sub-Warden <span class="place open-sans-font">Sol Plaatje University</span></h5>
-                             </li>
-                        <li>
-                            <div class="icon">
-                                <i class="fa fa-briefcase"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">Jan 2025 - May 2025</span>
-                            <h5 class="poppins-font text-uppercase"> AI apprenticeship<span class="place open-sans-font">WorldQuant University</span></h5>
-                            <p class="open-sans-font"></li>
-                        <li>
-                            <div class="icon">
-                                <i class="fa fa-briefcase"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">Jan 2025</span>
-                            <h5 class="poppins-font text-uppercase">Generative AI <span class="place open-sans-font">IBM</span></h5>
-                            <p class="open-sans-font"> </p>
                         </li>
                         <li>
-                            <div class="icon">
-                                <i class="fa fa-briefcase"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-briefcase"></i></div>
+                            <span class="time open-sans-font text-uppercase">Jan 2025 - May 2025</span>
+                            <h5 class="poppins-font text-uppercase">AI Apprenticeship <span class="place open-sans-font">WorldQuant University</span></h5>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa fa-briefcase"></i></div>
+                            <span class="time open-sans-font text-uppercase">Jan 2025</span>
+                            <h5 class="poppins-font text-uppercase">Generative AI <span class="place open-sans-font">IBM</span></h5>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa fa-briefcase"></i></div>
                             <span class="time open-sans-font text-uppercase">Jan 2024 - Jan 2025</span>
-                            <h5 class="poppins-font text-uppercase">Data Science apprenticeship<span class="place open-sans-font">WorldQuant University</span></h5>
-                            <p class="open-sans-font"> </p>
+                            <h5 class="poppins-font text-uppercase">Data Science Apprenticeship <span class="place open-sans-font">WorldQuant University</span></h5>
                         </li>
                     </ul>
                 </div>
@@ -243,92 +300,68 @@
                 <div class="resume-box">
                     <ul>
                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">March 2026-Present </span>
-                            <h5 class="poppins-font text-uppercase">Masters of Science in Computer and Information Science(Data Science) <span class="place open-sans-font">Sol Plaatje University</span></h5>
-                             </li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+                            <span class="time open-sans-font text-uppercase">March 2026 - Present</span>
+                            <h5 class="poppins-font text-uppercase">Masters of Science in Computer and Information Science (Data Science) <span class="place open-sans-font">Sol Plaatje University</span></h5>
+                        </li>
                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">Feb 2025 -March 2026</span>
-                            <h5 class="poppins-font text-uppercase">Bsc Hons in Data Science <span class="place open-sans-font">Sol Plaatje University</span></h5>
-                             </li>
-                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+                            <span class="time open-sans-font text-uppercase">Feb 2025 - March 2026</span>
+                            <h5 class="poppins-font text-uppercase">BSc Hons in Data Science <span class="place open-sans-font">Sol Plaatje University</span></h5>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
                             <span class="time open-sans-font text-uppercase">Jan 2025</span>
-                            <h5 class="poppins-font text-uppercase">Exploratory Data Analysis for ML<span class="place open-sans-font">IBM</span></h5>
-                        </li>
-                            <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">Feb 2022- Dec 2024 </span>
-                            <h5 class="poppins-font text-uppercase">BSc Data Science<span class="place open-sans-font">Sol Plaatje University</span></h5>
+                            <h5 class="poppins-font text-uppercase">Exploratory Data Analysis for ML <span class="place open-sans-font">IBM</span></h5>
                         </li>
                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">2024</span>
-                            <h5 class="poppins-font text-uppercase">Endpoint Security<span class="place open-sans-font">Cisco Networking Academy</span></h5>
-                        </li>
-                    
-                          <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
-                            <span class="time open-sans-font text-uppercase">2024</span>
-                            <h5 class="poppins-font text-uppercase">Data Analytics Essentials<span class="place open-sans-font">Cisco Networking Academy</span></h5>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+                            <span class="time open-sans-font text-uppercase">Feb 2022 - Dec 2024</span>
+                            <h5 class="poppins-font text-uppercase">BSc Data Science <span class="place open-sans-font">Sol Plaatje University</span></h5>
                         </li>
                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
                             <span class="time open-sans-font text-uppercase">2024</span>
-                            <h5 class="poppins-font text-uppercase">Data Analytics in Finance<span class="place open-sans-font">Great Learning Academy</span></h5>
+                            <h5 class="poppins-font text-uppercase">Endpoint Security <span class="place open-sans-font">Cisco Networking Academy</span></h5>
                         </li>
                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
                             <span class="time open-sans-font text-uppercase">2024</span>
-                            <h5 class="poppins-font text-uppercase">Credit Card Fraud Detection<span class="place open-sans-font">Great Learning Academy</span></h5>
+                            <h5 class="poppins-font text-uppercase">Data Analytics Essentials <span class="place open-sans-font">Cisco Networking Academy</span></h5>
                         </li>
-                    
-                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
+                        <li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
                             <span class="time open-sans-font text-uppercase">2024</span>
-                            <h5 class="poppins-font text-uppercase">Network Defence<span class="place open-sans-font">Cisco Networking Academy</span></h5>
+                            <h5 class="poppins-font text-uppercase">Data Analytics in Finance <span class="place open-sans-font">Great Learning Academy</span></h5>
                         </li>
-                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
+                        <li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
                             <span class="time open-sans-font text-uppercase">2024</span>
-                            <h5 class="poppins-font text-uppercase"> Cyber Threat Management<span class="place open-sans-font">Cisco Networking Academy</span></h5>
+                            <h5 class="poppins-font text-uppercase">Credit Card Fraud Detection <span class="place open-sans-font">Great Learning Academy</span></h5>
                         </li>
-                         <li>
-                            <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
+                        <li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+                            <span class="time open-sans-font text-uppercase">2024</span>
+                            <h5 class="poppins-font text-uppercase">Network Defence <span class="place open-sans-font">Cisco Networking Academy</span></h5>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+                            <span class="time open-sans-font text-uppercase">2024</span>
+                            <h5 class="poppins-font text-uppercase">Cyber Threat Management <span class="place open-sans-font">Cisco Networking Academy</span></h5>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
                             <span class="time open-sans-font text-uppercase">2023</span>
-                            <h5 class="poppins-font text-uppercase">Analytics in SQL and Python<span class="place open-sans-font">Great Learning Academy</span></h5>
+                            <h5 class="poppins-font text-uppercase">Analytics in SQL and Python <span class="place open-sans-font">Great Learning Academy</span></h5>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
         <!-- Experience & Education Ends -->
+
     </div>
 </section>
-<!-- Main Content Ends -->
 
 <!-- Template JS Files -->
 <script src="jquery-3.5.0.min.js"></script>
@@ -345,5 +378,4 @@
 <script src="custom.js"></script>
 
 </body>
-
 </html>
