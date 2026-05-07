@@ -179,48 +179,142 @@
 <!-- ✅ EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<!-- ✅ Popup overlay styles -->
+<style>
+    #ej-popup-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.75);
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+    }
+    #ej-popup-overlay.active {
+        display: flex;
+    }
+    #ej-popup-box {
+        background: #1a1a1a;
+        border: 2px solid #e74c3c;
+        border-radius: 12px;
+        padding: 40px 50px;
+        text-align: center;
+        max-width: 420px;
+        width: 90%;
+        box-shadow: 0 0 40px rgba(231,76,60,0.4);
+        animation: popIn 0.3s ease;
+    }
+    @keyframes popIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to   { transform: scale(1);   opacity: 1; }
+    }
+    #ej-popup-box .popup-icon {
+        font-size: 48px;
+        color: #e74c3c;
+        margin-bottom: 16px;
+    }
+    #ej-popup-box h3 {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    #ej-popup-box p {
+        color: #aaa;
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+    #ej-popup-close {
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        padding: 10px 32px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background 0.2s;
+    }
+    #ej-popup-close:hover {
+        background: #c0392b;
+    }
+
+    /* Success message styling */
+    #output_message.success {
+        display: block;
+        background: #27ae60;
+        color: #000 !important;
+        padding: 14px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-top: 16px;
+    }
+</style>
+
+<!-- ✅ Popup HTML -->
+<div id="ej-popup-overlay">
+    <div id="ej-popup-box">
+        <div class="popup-icon"><i class="fa fa-times-circle"></i></div>
+        <h3>Message Failed</h3>
+        <p>Something went wrong while sending your message.<br>Please try again or email me directly at<br><strong style="color:#fff">nomandondoawonke@hotmail.com</strong></p>
+        <button id="ej-popup-close">Close</button>
+    </div>
+</div>
+
 <!-- ✅ EmailJS Integration -->
 <script>
-    // 🔁 Replace the values below with your actual EmailJS credentials
-    const EMAILJS_PUBLIC_KEY  = "BjA568Vfm9ZBJHU17";   // Account → API Keys
-    const EMAILJS_SERVICE_ID  = "service_mqfe2fa";   // Email Services
-    const EMAILJS_TEMPLATE_ID = "template_dri3dfb";  // Email Templates
+    const EMAILJS_PUBLIC_KEY      = "BjA568Vfm9ZBJHU17";
+    const EMAILJS_SERVICE_ID      = "service_mqfe2fa";
+    const EMAILJS_TEMPLATE_MINE   = "template_o4ezz0p";  // ✅ Sends to YOUR inbox
+    const EMAILJS_TEMPLATE_REPLY  = "template_dri3dfb";  // ✅ Auto-reply to sender
 
-    // Initialise EmailJS with your public key
     emailjs.init(EMAILJS_PUBLIC_KEY);
 
+    // Close popup
+    document.getElementById("ej-popup-close").addEventListener("click", function () {
+        document.getElementById("ej-popup-overlay").classList.remove("active");
+    });
+
     document.getElementById("contact-form").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent default page reload
+        e.preventDefault();
 
-        const submitBtn  = document.getElementById("submit-btn");
-        const btnText    = submitBtn.querySelector(".button-text");
-        const output     = document.getElementById("output_message");
+        const form      = this;
+        const submitBtn = document.getElementById("submit-btn");
+        const btnText   = submitBtn.querySelector(".button-text");
+        const output    = document.getElementById("output_message");
 
-        // Disable button and show sending state
+        // Reset output
+        output.textContent = "";
+        output.className   = "output_message text-center font-weight-600 text-uppercase";
         submitBtn.disabled = true;
         btnText.textContent = "Sending...";
-        output.textContent  = "";
-        output.style.color  = "";
 
-        // Send the form using EmailJS
-        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
-            .then(function () {
-                // ✅ Success
-                output.textContent = "Message sent successfully!";
-                output.style.color = "green";
-                document.getElementById("contact-form").reset();
-            })
-            .catch(function (error) {
-                // ❌ Error
-                console.error("EmailJS error:", error);
-                output.textContent = "Oops! Something went wrong. Please try again.";
-                output.style.color = "red";
-            })
-            .finally(function () {
-                // Re-enable button
-                submitBtn.disabled = false;
-                btnText.textContent = "Send Message";
-            });
+        // Send BOTH emails in parallel
+        Promise.all([
+            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_MINE,  form),
+            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_REPLY, form)
+        ])
+        .then(function () {
+            // ✅ Success — green background, black text
+            output.textContent = "✓ Message sent successfully!";
+            output.classList.add("success");
+            form.reset();
+        })
+        .catch(function (error) {
+            // ❌ Failure — show popup
+            console.error("EmailJS error:", error);
+            document.getElementById("ej-popup-overlay").classList.add("active");
+        })
+        .finally(function () {
+            submitBtn.disabled = false;
+            btnText.textContent = "Send Message";
+        });
     });
 </script>
 
