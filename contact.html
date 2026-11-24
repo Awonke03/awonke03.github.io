@@ -30,21 +30,6 @@
 
     <!-- Contact Form Custom Styles -->
     <style>
-        /* SUCCESS MESSAGE - !important overrides theme */
-        #output_message.success {
-            display: block !important;
-            background: #27ae60 !important;
-            color: #000000 !important;
-            padding: 14px 24px !important;
-            border-radius: 30px !important;
-            font-weight: 700 !important;
-            font-size: 14px !important;
-            letter-spacing: 1px !important;
-            margin-top: 16px !important;
-            width: 100% !important;
-            border: none !important;
-            -webkit-text-fill-color: #000000 !important;
-        }
         /* FAILURE POPUP */
         #ej-popup-overlay {
             display: none;
@@ -87,7 +72,7 @@
         #ej-popup-box { padding:clamp(22px,5vw,40px);margin:auto; }
         #ej-popup-overlay.contact-success #ej-popup-box { border-color:var(--site-accent,#cc0000);box-shadow:0 0 40px rgba(0,0,0,.5); }
         #ej-popup-overlay.contact-success .popup-icon { color:#27ae60; }
-        #output_message.contact-error { display:block;color:#ff8f8f;margin-top:16px; }
+
         #submit-btn:disabled { cursor:wait;opacity:.75; }
         @media(prefers-reduced-motion:reduce){#ej-popup-box{animation:none}}
     </style>
@@ -209,9 +194,7 @@
                                     <span class="button-icon fa fa-send"></span>
                                 </button>
                             </div>
-                            <div class="col-12 form-message">
-                                <span class="output_message text-center font-weight-600 text-uppercase" id="output_message" role="status" aria-live="polite"></span>
-                            </div>
+
                         </div>
                     </div>
                 </form>
@@ -253,7 +236,7 @@
     const btn = document.getElementById('submit-btn');
     const label = btn.querySelector('.button-text');
     const icon = btn.querySelector('.button-icon');
-    const output = document.getElementById('output_message');
+
     const popup = document.getElementById('ej-popup-overlay');
     let sending = false;
     function feedback(ok, title, message){
@@ -261,8 +244,8 @@
         popup.querySelector('.popup-icon i').className = 'fa '+(ok?'fa-check-circle':'fa-times-circle');
         document.getElementById('contact-feedback-title').textContent = title;
         document.getElementById('contact-feedback-message').textContent = message;
-        output.textContent = message;
-        output.className = 'output_message text-center font-weight-600 '+(ok?'success':'contact-error');
+
+
         if(!popup.open) popup.showModal();
     }
     document.getElementById('ej-popup-close').addEventListener('click',()=>popup.close());
@@ -275,8 +258,8 @@
         form.setAttribute('aria-busy','true');
         label.textContent='Sending...';
         icon.className='button-icon fa fa-spinner fa-spin';
-        output.textContent='';
-        output.className='output_message text-center font-weight-600';
+
+
         const controller=new AbortController();
         const timer=setTimeout(()=>controller.abort(),25000);
         try{
