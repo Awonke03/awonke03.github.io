@@ -84,3 +84,7 @@ html:has(body.certificates){overflow-x:hidden}body.certificates{overflow-x:clip}
 @media (prefers-reduced-motion: reduce) {
     .home .home-details h1 .cd-words-wrapper .role-text { transition: none; }
 }
+
+/* Keep the project slideshow and its close control above the global resume launcher. */
+.portfolio .slideshow { z-index: 1300; }
+.portfolio:has(.slideshow-open) .resume-launch { visibility: hidden; pointer-events: none; }
