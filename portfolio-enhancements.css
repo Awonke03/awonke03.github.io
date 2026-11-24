@@ -88,3 +88,73 @@ html:has(body.certificates){overflow-x:hidden}body.certificates{overflow-x:clip}
 /* Keep the project slideshow and its close control above the global resume launcher. */
 .portfolio .slideshow { z-index: 1300; }
 .portfolio:has(.slideshow-open) .resume-launch { visibility: hidden; pointer-events: none; }
+
+/* Certificate viewer: project-style dark backdrop, side previews and 0.5s sliding panels. */
+.doc-panel{display:contents}
+.doc-issuer[hidden],.cert-close[hidden],.cert-peek[hidden],.resume-launch[hidden]{display:none!important}
+.cert-peek,.cert-close{display:none}
+.doc-dialog.is-certificate[open]{position:fixed;inset:0;margin:0;width:100%;height:100%;height:100dvh;max-width:none;max-height:none;border:0;border-radius:0;background:transparent;box-shadow:none;display:grid;place-items:center;overflow:hidden;padding:42px 72px;perspective:1000px;animation:certificate-overlay-in .5s ease}
+.doc-dialog.is-certificate::backdrop{background:rgba(0,0,0,.85);backdrop-filter:none}
+@keyframes certificate-overlay-in{from{opacity:0}to{opacity:1}}
+.is-certificate .doc-panel{display:flex;flex-direction:column;position:relative;width:min(900px,100%);max-height:100%;min-height:0;overflow:hidden;background:#252525;border-radius:10px;z-index:2;box-shadow:0 12px 36px #0006}
+.is-certificate .doc-dialog-head{background:#252525;border:0;padding:18px 24px 12px;justify-content:center;text-align:center}
+.is-certificate .doc-heading{width:100%;min-width:0}
+.is-certificate .doc-issuer,.cert-peek .doc-issuer{display:flex;align-items:center;justify-content:center;gap:12px;color:#eee;font-size:14px;font-weight:600;margin:0 auto 8px}
+.is-certificate .doc-issuer .issuer-logo{width:72px;height:48px;object-fit:contain;flex-shrink:0}
+.is-certificate .doc-dialog-head h2{color:var(--site-accent,#cc0000);font-size:clamp(19px,2.4vw,30px);text-transform:uppercase;font-weight:700;line-height:1.25;margin:4px 0 7px}
+.is-certificate .doc-dialog-head .doc-close{display:none}
+.is-certificate .doc-stage{flex:1;min-height:0;overflow:hidden}
+.doc-dialog.is-certificate .doc-viewer{background:#252525;padding:8px 24px 12px;max-height:none;overflow:auto}
+.is-certificate .doc-viewer img{width:auto;max-width:100%;max-height:62dvh;object-fit:contain;margin:0 auto;box-shadow:none}
+.is-certificate .doc-dialog-foot{background:#252525;border-color:#393939;justify-content:center}
+.is-certificate .doc-dialog-foot .doc-button:last-child{margin-left:0}
+.is-certificate .doc-nav,.is-certificate .cert-close{position:absolute;z-index:8;background:transparent;border:0;box-shadow:none;color:white;cursor:pointer;padding:0;border-radius:0;display:grid;place-items:center;width:54px;height:64px;opacity:1;transition:opacity .2s}
+.is-certificate .doc-nav:hover,.is-certificate .cert-close:hover{background:transparent;opacity:.75}
+.is-certificate .doc-nav:focus-visible,.is-certificate .cert-close:focus-visible{outline:2px solid white;outline-offset:2px}
+.is-certificate .doc-nav:disabled{opacity:.18;cursor:default}
+.is-certificate .doc-nav img,.is-certificate .cert-close img{width:32px;height:32px;object-fit:contain}
+.is-certificate .doc-prev{left:12px}
+.is-certificate .doc-next{right:12px}
+.is-certificate .cert-close{top:12px;right:14px;width:52px;height:52px}
+.is-certificate .cert-peek{display:block;position:absolute;top:50%;width:min(900px,calc(100% - 144px));padding:24px;background:#252525;border-radius:10px;opacity:.32;pointer-events:none;z-index:1;text-align:center}
+.is-certificate .cert-peek h3{color:var(--site-accent,#cc0000);font-size:23px;text-transform:uppercase;margin:12px 0}
+.is-certificate .cert-peek>img{max-width:100%;max-height:53vh;object-fit:contain}
+.is-certificate .cert-peek-prev{left:0;transform:translate(-86%,-50%) scale(.94)}
+.is-certificate .cert-peek-next{right:0;transform:translate(86%,-50%) scale(.94)}
+.is-certificate.cert-moving .cert-peek{visibility:hidden}
+.is-certificate .doc-panel.cert-ghost{z-index:3;pointer-events:none;max-height:none}
+@media(max-width:991px){
+  .doc-dialog.is-certificate[open]{padding:64px 12px 12px}
+  .is-certificate .cert-peek{display:none!important}
+  .is-certificate .doc-panel{width:100%;max-width:720px}
+  .is-certificate .doc-nav{top:31px;transform:translateY(-50%);width:44px;height:44px}
+  .is-certificate .doc-prev{left:14px}
+  .is-certificate .doc-next{right:14px}
+  .is-certificate .cert-close{top:9px;left:50%;right:auto;transform:translateX(-50%);width:44px;height:44px}
+  .is-certificate .doc-nav img,.is-certificate .cert-close img{width:28px;height:28px}
+  .is-certificate .doc-dialog-head{padding:12px 14px 8px}
+  .doc-dialog.is-certificate .doc-viewer{padding:6px 12px 10px}
+  .is-certificate .doc-issuer .issuer-logo{width:54px;height:38px}
+}
+@media(max-width:575px){
+  .is-certificate .doc-dialog-head h2{font-size:18px}
+  .is-certificate .doc-dialog-foot{padding:8px;gap:6px}
+  .is-certificate .doc-issuer{font-size:12px}
+  .is-certificate .doc-viewer img{max-height:55dvh}
+}
+@media(max-height:520px) and (orientation:landscape){
+  .doc-dialog.is-certificate[open]{padding-top:46px;padding-bottom:6px}
+  .is-certificate .doc-dialog-head{padding:6px 12px}
+  .is-certificate .doc-issuer{margin-bottom:3px}
+  .is-certificate .doc-issuer .issuer-logo{height:25px;width:42px}
+  .is-certificate .doc-dialog-head h2{font-size:16px}
+  .is-certificate .doc-viewer img{max-height:43dvh}
+  .is-certificate .cert-close{top:0}
+  .is-certificate .doc-nav{top:23px}
+}
+@media(prefers-reduced-motion:reduce){.doc-dialog.is-certificate[open]{animation:none}}
+/* Project close control must never share the resume button's hit area. */
+body.portfolio .slideshow{z-index:2000!important}
+body.portfolio .slideshow nav span.nav-close{z-index:2001!important}
+body.portfolio.project-viewer-open .resume-launch,body.portfolio .resume-launch[hidden],body.portfolio:has(.slideshow-open) .resume-launch{display:none!important;pointer-events:none!important}
+@media(min-width:992px){body.portfolio .resume-launch{right:98px;z-index:1000}}
