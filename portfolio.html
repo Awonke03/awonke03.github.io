@@ -21,7 +21,20 @@
 <!-- Live Style Switcher - demo only -->
 <!-- Modernizr JS File -->
 <script src="modernizr.custom.js"></script>
-<link href="portfolio-enhancements.css?v=20261124-viewer2" rel="stylesheet"/>
+<link href="portfolio-enhancements.css?v=20261124-project-close3" rel="stylesheet"/>
+
+<style id="project-close-fix">
+/* Keep resume and the project close control in distinct screen positions. */
+@media(min-width:992px){body.portfolio .resume-launch{right:108px!important}}
+body.portfolio.project-viewer-open .resume-launch,
+body.portfolio:has(#grid-gallery.slideshow-open) .resume-launch{display:none!important;visibility:hidden!important;pointer-events:none!important}
+#project-close-fixed{display:none;position:fixed;top:24px;right:24px;z-index:2147483000;width:48px;height:48px;padding:8px;background:transparent;border:0;color:white;cursor:pointer;align-items:center;justify-content:center;line-height:1}
+#project-close-fixed img{width:32px;height:32px;object-fit:contain}
+#project-close-fixed:focus-visible{outline:2px solid white;outline-offset:2px}
+body.project-close-ready.project-viewer-open #project-close-fixed{display:flex}
+body.project-close-ready.project-viewer-open #grid-gallery .slideshow nav .nav-close{visibility:hidden;pointer-events:none}
+@media(max-width:991px){#project-close-fixed{top:12px;left:50%;right:auto;transform:translateX(-50%)}}
+</style>
 </head>
 <body class="portfolio">
 <header class="header" id="navbar-collapse-toggle">
@@ -429,6 +442,28 @@
 <script src="popper.min.js"></script>
 <script src="bootstrap.js"></script>
 <script src="custom.js"></script>
-<script src="portfolio-enhancements.js?v=20261124-viewer2"></script>
+<script src="portfolio-enhancements.js?v=20261124-project-close3"></script>
+
+<button id="project-close-fixed" type="button" aria-label="Close project" title="Close project" hidden><img src="close-button.png" alt=""></button>
+<script>
+(function(){
+  'use strict';
+  var gallery=document.getElementById('grid-gallery');
+  var close=document.getElementById('project-close-fixed');
+  var original=gallery&&gallery.querySelector('.slideshow nav .nav-close');
+  if(!gallery||!original||!close)return;
+  function sync(){
+    var active=gallery.classList.contains('slideshow-open');
+    document.body.classList.toggle('project-viewer-open',active);
+    close.hidden=!active;
+    var resume=document.querySelector('.resume-launch');
+    if(resume)resume.hidden=active;
+  }
+  close.addEventListener('click',function(){original.click();sync();});
+  new MutationObserver(sync).observe(gallery,{attributes:true,attributeFilter:['class']});
+  document.body.classList.add('project-close-ready');
+  sync();
+})();
+</script>
 </body>
 </html>
