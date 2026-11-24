@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="utf-8">
@@ -8,8 +8,8 @@
      <link rel="icon" href="logo.png" type="image/x-icon">
 
     <!-- Template Google Fonts -->
-    <link href="../../css.css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="../../css-1.css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
 
     <!-- Template CSS Files -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -20,31 +20,21 @@
     <link href="style.css" rel="stylesheet">
 
     <!-- CSS Skin File -->
-    <link href="yellow.css" rel="stylesheet">
+    <link href="red.css" rel="stylesheet">
 
-    <!-- Live Style Switcher - demo only -->
-    <link rel="alternate stylesheet" type="text/css" title="blue" href="blue.css">
-    <link rel="alternate stylesheet" type="text/css" title="green" href="green.css">
-    <link rel="alternate stylesheet" type="text/css" title="yellow" href="yellow.css">
-    <link rel="alternate stylesheet" type="text/css" title="blueviolet" href="blueviolet.css">
-    <link rel="alternate stylesheet" type="text/css" title="goldenrod" href="goldenrod.css">
-    <link rel="alternate stylesheet" type="text/css" title="magenta" href="magenta.css">
-    <link rel="alternate stylesheet" type="text/css" title="orange" href="orange.css">
-    <link rel="alternate stylesheet" type="text/css" title="purple" href="purple.css">
-    <link rel="alternate stylesheet" type="text/css" title="red" href="red.css">
-    <link rel="alternate stylesheet" type="text/css" title="yellowgreen" href="yellowgreen.css">
-    <link rel="stylesheet" type="text/css" href="styleswitcher.css">
+    <!-- Original style switcher -->
+    <link rel="stylesheet" href="styleswitcher.css">
+
 
     <!-- Modernizr JS File -->
     <script src="modernizr.custom.js"></script>
+    <link rel="stylesheet" href="portfolio-enhancements.css">
 </head>
 
 <body class="home">
-<!-- Live Style Switcher Starts - demo only -->
+<button type="button" id="showSwitcher" class="styleSecondColor" aria-label="Theme settings" aria-expanded="false" aria-controls="switcher"><i class="fa fa-cog fa-spin" aria-hidden="true"></i></button>
+<aside id="switcher" aria-label="Theme settings" hidden><div class="content-switcher"><button type="button" id="hideSwitcher" aria-label="Close settings">&times;</button><h4>Theme colors</h4><p>Choose your accent colour.</p><div class="theme-options"><button type="button" data-theme="red" aria-label="Red" title="Red" style="--swatch:#cc0000"></button><button type="button" data-theme="green" aria-label="Green" title="Green" style="--swatch:#28a745"></button><button type="button" data-theme="blue" aria-label="Blue" title="Blue" style="--swatch:#4169e1"></button><button type="button" data-theme="purple" aria-label="Purple" title="Purple" style="--swatch:#800080"></button><button type="button" data-theme="orange" aria-label="Orange" title="Orange" style="--swatch:#ff7f00"></button></div></div></aside>
 
-</div>
-<div id="showSwitcher" class="styleSecondColor"><i class="fa fa-cog fa-spin"></i></div>
-<!-- Live Style Switcher Ends - demo only -->
 <!-- Header Starts -->
 <header class="header" id="navbar-collapse-toggle">
     <!-- Fixed Navigation Starts -->
@@ -61,6 +51,7 @@
                 <h2>About</h2>
             </a>
         </li>
+        <li class="icon-box"><i class="fa fa-certificate"></i><a href="certificates.html" aria-label="Certificates"><h2>Certificates</h2></a></li>
         <li class="icon-box">
             <i class="fa fa-briefcase"></i>
             <a href="portfolio.html">
@@ -86,6 +77,7 @@
             <ul class="list-unstyled" id="menu">
                 <li class="active"><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="certificates.html"><i class="fa fa-certificate"></i><span>Certificates</span></a></li>
                 <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
               
@@ -107,24 +99,12 @@
                     <span class="cd-words-wrapper">
                     <b class="is-visible">Data Scientist</b>
                     <b class="is-hidden">Data Engineer</b>
-                     <b class="is-hidden">Big Data Analyst</b>
+                     <b class="is-hidden">Digital Analyst</b>
                      <b class="is-hidden">Data Architect</b>
                       <b class="is-hidden">ML & AI Engineer</b>
                         
                 </span></h1>
-                <p class="open-sans-font">
-                I am a Master of Science student in Computer and Information Science (Data Science) at Sol Plaatje University,
-                having graduated with a BSc in Data Science cum laude and a BSc Honours in Data Science.
-                I am also an MSc in Financial Engineering candidate at WorldQuant University
-                and previously completed the Applied AI Lab: Deep Learning for Computer Vision program there.
-                My academic and practical focus includes machine learning, generative AI,
-                computer vision, cyber intelligence, and big data analysis.
-
-                My technical experience spans Python, R, Java, C++, and C#,
-                along with tools such as Hadoop, Kafka, PostgreSQL, Power BI, Kubernetes, Snowflake,
-                Docker, Podman, and Spark for large-scale data processing, analytics, and intelligent system development.
-                I enjoy working at the intersection of data, security, and emerging technologies,
-                particularly where AI can enhance decision-making and strengthen digital resilience.</p>
+                <p class="open-sans-font">I am a Digital Analyst at Volkswagen Group Africa, working in IT Corporate Solutions as an AI Engineer and Data Scientist. My experience spans enterprise generative and agentic AI, retrieval-augmented generation (RAG), predictive modelling, financial process automation, data engineering and MLOps. I am pursuing an MSc in Computer and Information Science (Data Science) at Sol Plaatje University and an MSc in Financial Engineering at WorldQuant University, having completed both my BSc and BSc Honours in Data Science cum laude. I build scalable, explainable AI and analytical solutions using Python, Microsoft Azure, Fabric, SQL Server, SAS, Kafka, Hadoop and modern machine learning technologies, with a focus on practical business impact and quantitative research.</p>
                 <a class="button" href="about.html">
                     <span class="button-text">more about me</span>
                     <span class="button-icon fa fa-arrow-right"></span>
@@ -137,7 +117,7 @@
 
 <!-- Template JS Files -->
 <script src="jquery-3.5.0.min.js"></script>
-<script src="styleswitcher.js"></script>
+
 <script src="preloader.min.js"></script>
 <script src="fm.revealator.jquery.min.js"></script>
 <script src="imagesloaded.pkgd.min.js"></script>
@@ -149,6 +129,7 @@
 <script src="bootstrap.js"></script>
 <script src="custom.js"></script>
 
+<script src="portfolio-enhancements.js"></script>
 </body>
 
 </html>
