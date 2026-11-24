@@ -28,7 +28,7 @@
     <!-- Modernizr JS File -->
     <script src="modernizr.custom.js"></script>
 
-    <!-- EmailJS & Form Custom Styles -->
+    <!-- Contact Form Custom Styles -->
     <style>
         /* SUCCESS MESSAGE - !important overrides theme */
         #output_message.success {
@@ -80,8 +80,18 @@
             font-weight: 600 !important; cursor: pointer !important; text-transform: uppercase; letter-spacing: 1px; transition: background 0.2s;
         }
         #ej-popup-close:hover { background: #c0392b !important; }
+    
+        #ej-popup-overlay { width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:16px;border:0;background:transparent;overflow:auto; }
+        #ej-popup-overlay[open] { display:flex; }
+        #ej-popup-overlay::backdrop { background:rgba(0,0,0,.80); }
+        #ej-popup-box { padding:clamp(22px,5vw,40px);margin:auto; }
+        #ej-popup-overlay.contact-success #ej-popup-box { border-color:var(--site-accent,#cc0000);box-shadow:0 0 40px rgba(0,0,0,.5); }
+        #ej-popup-overlay.contact-success .popup-icon { color:#27ae60; }
+        #output_message.contact-error { display:block;color:#ff8f8f;margin-top:16px; }
+        #submit-btn:disabled { cursor:wait;opacity:.75; }
+        @media(prefers-reduced-motion:reduce){#ej-popup-box{animation:none}}
     </style>
-    <link rel="stylesheet" href="portfolio-enhancements.css">
+    <link rel="stylesheet" href="portfolio-enhancements.css?v=20261124-contact4">
 </head>
 
 <body class="contact">
@@ -176,8 +186,11 @@
 
             <!-- Contact Form Starts -->
             <div class="col-12 col-lg-8">
-                <!-- NOTE: action and method removed — EmailJS handles submission via JavaScript -->
-                <form class="contactform" id="contact-form">
+                <!-- Web3Forms contact submission -->
+                <form class="contactform" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="d6dc0dc6-6a68-42bc-a73c-009a4bac2c37">
+                    <input type="hidden" name="from_name" value="Portfolio Contact">
+                    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" hidden>
                     <div class="contactform">
                         <div class="row">
                             <div class="col-12 col-md-4">
@@ -197,7 +210,7 @@
                                 </button>
                             </div>
                             <div class="col-12 form-message">
-                                <span class="output_message text-center font-weight-600 text-uppercase" id="output_message"></span>
+                                <span class="output_message text-center font-weight-600 text-uppercase" id="output_message" role="status" aria-live="polite"></span>
                             </div>
                         </div>
                     </div>
@@ -223,64 +236,73 @@
 <script src="bootstrap.js"></script>
 <script src="custom.js"></script>
 
-<!-- ✅ EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<!-- ✅ Popup HTML -->
-<div id="ej-popup-overlay">
+<!-- Contact form feedback -->
+<dialog id="ej-popup-overlay" aria-labelledby="contact-feedback-title">
     <div id="ej-popup-box">
-        <div class="popup-icon"><i class="fa fa-times-circle"></i></div>
-        <h3>Message Failed</h3>
-        <p>Something went wrong while sending your message.<br>Please try again or email me directly at<br><strong style="color:#fff">nomandondoawonke@hotmail.com</strong></p>
-        <button id="ej-popup-close">Close</button>
+        <div class="popup-icon" aria-hidden="true"><i class="fa fa-times-circle"></i></div>
+        <h3 id="contact-feedback-title"></h3>
+        <p id="contact-feedback-message"></p>
+        <button type="button" id="ej-popup-close">Close</button>
     </div>
-</div>
-
-<!-- ✅ EmailJS Integration -->
+</dialog>
 <script>
-    const EMAILJS_PUBLIC_KEY      = "BjA568Vfm9ZBJHU17";
-    const EMAILJS_SERVICE_ID      = "service_mqfe2fa";
-    const EMAILJS_TEMPLATE_MINE   = "template_o4ezz0p";  // ✅ Sends to YOUR inbox
-    const EMAILJS_TEMPLATE_REPLY  = "template_dri3dfb";  // ✅ Auto-reply to sender
-
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-
-    // Close popup
-    document.getElementById("ej-popup-close").addEventListener("click", function () {
-        document.getElementById("ej-popup-overlay").classList.remove("active");
-    });
-
-    document.getElementById("contact-form").addEventListener("submit", function (e) {
+(function(){
+    'use strict';
+    const form = document.getElementById('contact-form');
+    const btn = document.getElementById('submit-btn');
+    const label = btn.querySelector('.button-text');
+    const icon = btn.querySelector('.button-icon');
+    const output = document.getElementById('output_message');
+    const popup = document.getElementById('ej-popup-overlay');
+    let sending = false;
+    function feedback(ok, title, message){
+        popup.classList.toggle('contact-success',ok);
+        popup.querySelector('.popup-icon i').className = 'fa '+(ok?'fa-check-circle':'fa-times-circle');
+        document.getElementById('contact-feedback-title').textContent = title;
+        document.getElementById('contact-feedback-message').textContent = message;
+        output.textContent = message;
+        output.className = 'output_message text-center font-weight-600 '+(ok?'success':'contact-error');
+        if(!popup.open) popup.showModal();
+    }
+    document.getElementById('ej-popup-close').addEventListener('click',()=>popup.close());
+    popup.addEventListener('click',e=>{if(e.target===popup)popup.close();});
+    form.addEventListener('submit',async function(e){
         e.preventDefault();
-
-        const form      = this;
-        const submitBtn = document.getElementById("submit-btn");
-        const btnText   = submitBtn.querySelector(".button-text");
-        const output    = document.getElementById("output_message");
-
-        // Reset output
-        output.textContent = "";
-        output.className   = "output_message text-center font-weight-600 text-uppercase";
-        submitBtn.disabled = true;
-        btnText.textContent = "Sending...";
-
-        Promise.all([
-            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_MINE,  form),
-            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_REPLY, form)
-        ])
-        .then(function () {
-            form.reset();
-            btnText.textContent = "Message Sent Successfully!";
-            submitBtn.disabled = false;
-        })
-        .catch(function (error) {
-            console.error("EmailJS error:", error);
-            btnText.textContent = "Send Message";
-            submitBtn.disabled = false;
-        });
+        if(sending || !form.reportValidity())return;
+        sending=true;
+        btn.disabled=true;
+        form.setAttribute('aria-busy','true');
+        label.textContent='Sending...';
+        icon.className='button-icon fa fa-spinner fa-spin';
+        output.textContent='';
+        output.className='output_message text-center font-weight-600';
+        const controller=new AbortController();
+        const timer=setTimeout(()=>controller.abort(),25000);
+        try{
+            const fields=new FormData(form);
+            const response=await fetch(form.action,{method:'POST',headers:{Accept:'application/json'},body:fields,signal:controller.signal});
+            const data=await response.json();
+            if(response.ok && data.success===true){
+                form.reset();
+                feedback(true,'Message Sent','Thank you for reaching out. Your message has been submitted successfully.');
+            }else{
+                feedback(false,'Message Not Sent',response.status===429?'Too many requests. Please try again later or contact me directly.':'The email service could not accept your message. Please try again or email me directly.');
+            }
+        }catch(error){
+            feedback(false,'Delivery Not Confirmed','The connection was interrupted or timed out. Your message may not have been delivered. Please check before retrying, or email me directly.');
+        }finally{
+            clearTimeout(timer);
+            sending=false;
+            btn.disabled=false;
+            form.removeAttribute('aria-busy');
+            label.textContent='Send Message';
+            icon.className='button-icon fa fa-send';
+        }
     });
+})();
 </script>
 
-<script src="portfolio-enhancements.js"></script>
+<script src="portfolio-enhancements.js?v=20261124-contact4"></script>
 </body>
 </html>
