@@ -100,7 +100,8 @@
 
 		// open the slideshow when clicking on the main grid items
 		this.gridItems.forEach( function( item, idx ) {
-			item.addEventListener( 'click', function() {
+			item.addEventListener( 'click', function( event ) {
+				if ( event.target.closest('a, .unavailable') ) return;
 				self._openSlideshow( idx );
 			} );
 		} );
