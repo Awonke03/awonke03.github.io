@@ -11,6 +11,12 @@ try:
         page.goto('http://127.0.0.1:8765/sentiscope/')
         expect(page.locator('#status')).to_contain_text('30 comments',timeout=60000)
         expect(page.locator('#donut svg')).to_be_visible()
+        expect(page.locator('aside')).to_have_count(0)
+        expect(page.locator('.site-header nav')).to_be_visible()
+        expect(page.locator('.tab-ink')).to_be_visible()
+        page.locator('#hero-test').click()
+        expect(page.locator('#text')).to_be_visible()
+        expect(page.locator('#comment')).to_be_focused()
         page.locator('[data-view="text"]').click()
         page.locator('#comment').fill('The app is excellent but the service is terrible.')
         page.locator('#analyse').click()
@@ -29,7 +35,12 @@ try:
             page.set_viewport_size({'width':width,'height':900})
             for v in ['overview','text','feedback','topics','search']:
                 page.locator('[data-view="'+v+'"]').click()
+                page.wait_for_timeout(400)
                 assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(width,v)
+        page.emulate_media(reduced_motion='reduce')
+        page.locator('[data-view="overview"]').click()
+        expect(page.locator('#overview')).to_be_visible()
+        assert page.locator('.site-header').evaluate('(el)=>getComputedStyle(el).position')=='sticky'
         assert not errors,errors
         b.close()
 finally:server.terminate()
