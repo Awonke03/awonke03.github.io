@@ -31,11 +31,14 @@ jobs:
           node-version: "22"
       - run: pip install numpy==2.2.6 scipy==1.15.3 scikit-learn==1.6.1 playwright==1.52.0
       - run: node --check sentiscope/app.mjs && node --check sentiscope/engine.mjs
-      - run: python sentiscope-research/train.py
+      # Historical compact-model training is manual; the app uses pretrained multilingual sentiment.
+      - if: github.event_name == 'workflow_dispatch'
+        run: python sentiscope-research/train.py
       - run: node sentiscope-research/test.mjs
       - run: python -m playwright install --with-deps chromium
       - run: python sentiscope-research/browser.py
       - name: Publish validated portable model
+        if: github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
