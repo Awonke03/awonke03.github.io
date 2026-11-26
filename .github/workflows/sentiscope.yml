@@ -1,0 +1,49 @@
+name: SentiScope NLP training
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sentiscope-research/train.py'
+      - 'sentiscope/engine.mjs'
+      - 'sentiscope/app.mjs'
+      - 'sentiscope/index.html'
+      - '.github/workflows/sentiscope.yml'
+permissions:
+  contents: write
+concurrency:
+  group: sentiscope-training
+  cancel-in-progress: true
+jobs:
+  train:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install numpy==2.2.6 scipy==1.15.3 scikit-learn==1.6.1 playwright==1.52.0
+      - run: node --check sentiscope/app.mjs && node --check sentiscope/engine.mjs
+      - run: python sentiscope-research/train.py
+      - run: node sentiscope-research/test.mjs
+      - run: python -m playwright install --with-deps chromium
+      - run: python sentiscope-research/browser.py
+      - name: Publish validated portable model
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sentiscope/models.json sentiscope-research/report.json sentiscope-research/parity.json
+          git diff --cached --quiet || git commit -m "Publish tested SentiScope model weights and offline evaluation"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sentiscope-evaluation
+          path: sentiscope-research/report.json
