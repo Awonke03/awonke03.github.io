@@ -1,0 +1,129 @@
+{
+  "english": {
+    "winner": "sgd",
+    "validation_macro_f1": {
+      "logistic_0.5": 0.6133424912707636,
+      "logistic_2": 0.6203344994483647,
+      "logistic_8": 0.6141300110557345,
+      "nb_0.1": 0.48864306143550246,
+      "nb_1": 0.4753012912380677,
+      "sgd": 0.6298373499531209
+    },
+    "test": {
+      "negative": {
+        "precision": 0.5874052782858636,
+        "recall": 0.5665322580645161,
+        "f1-score": 0.5767799871712637,
+        "support": 3968.0
+      },
+      "neutral": {
+        "precision": 0.6253978890936506,
+        "recall": 0.6296171361106426,
+        "f1-score": 0.6275004202386956,
+        "support": 5929.0
+      },
+      "positive": {
+        "precision": 0.5531313131313131,
+        "recall": 0.5766638584667229,
+        "f1-score": 0.5646525056712725,
+        "support": 2374.0
+      },
+      "accuracy": 0.5989731888191672,
+      "macro avg": {
+        "precision": 0.5886448268369425,
+        "recall": 0.5909377508806273,
+        "f1-score": 0.5896443043604106,
+        "support": 12271.0
+      },
+      "weighted avg": {
+        "precision": 0.5991314453629124,
+        "recall": 0.5989731888191672,
+        "f1-score": 0.5989404310287997,
+        "support": 12271.0
+      }
+    },
+    "counts": [
+      45505,
+      2000,
+      12271
+    ]
+  },
+  "xitsonga_mozambique": {
+    "winner": "logistic_2",
+    "validation_macro_f1": {
+      "logistic_0.5": 0.5391029975208474,
+      "logistic_2": 0.5675082818515533,
+      "logistic_8": 0.5371905659443726,
+      "nb_0.1": 0.44912641315519003,
+      "nb_1": 0.29771583430120013,
+      "sgd": 0.5003512469265895
+    },
+    "test": {
+      "negative": {
+        "precision": 0.5789473684210527,
+        "recall": 0.6111111111111112,
+        "f1-score": 0.5945945945945946,
+        "support": 90.0
+      },
+      "neutral": {
+        "precision": 0.18,
+        "recall": 0.20930232558139536,
+        "f1-score": 0.1935483870967742,
+        "support": 43.0
+      },
+      "positive": {
+        "precision": 0.6238532110091743,
+        "recall": 0.5619834710743802,
+        "f1-score": 0.591304347826087,
+        "support": 121.0
+      },
+      "accuracy": 0.5196850393700787,
+      "macro avg": {
+        "precision": 0.4609335264767423,
+        "recall": 0.4607989692556289,
+        "f1-score": 0.4598157765058186,
+        "support": 254.0
+      },
+      "weighted avg": {
+        "precision": 0.5328011877559246,
+        "recall": 0.5196850393700787,
+        "f1-score": 0.525133544274139,
+        "support": 254.0
+      }
+    },
+    "counts": [
+      803,
+      203,
+      254
+    ]
+  },
+  "goemotions": {
+    "validation_macro_f1": {
+      "0.0001": 0.47200006689640955,
+      "1e-05": 0.46736673991391803
+    },
+    "test_macro_f1": 0.4327521415569162,
+    "test_micro_f1": 0.5096271492047137,
+    "counts": [
+      42686,
+      5381,
+      5408
+    ]
+  },
+  "source_sha256": {
+    "https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/sentiment/train_text.txt": "368f01052ea6fd8ffc408a2a2e6ac9669e31542581a0396ef16591ea26eb98a6",
+    "https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/sentiment/train_labels.txt": "122bfb1732fb6995b0e5c5f726c0ba457c469c3b6e60513007ce5037f23e65d4",
+    "https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/sentiment/val_text.txt": "e5b021e6fc45064c260b09814b803d8f56cada519c4d952d72f43d48a350a964",
+    "https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/sentiment/val_labels.txt": "b4566926c72e2e4e2916c864def94e76c4cdde52446af2c7ba4fc2006e057e51",
+    "https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/sentiment/test_text.txt": "09a93a55c63fd93f97485ef7302889d7edb4091cd49733aa37da094f0bfa0675",
+    "https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/sentiment/test_labels.txt": "6afb4afe9374d1f983bcf9a7c79b108d0f37fdf020a83f30488309bed215db9d",
+    "https://raw.githubusercontent.com/afrisenti-semeval/afrisent-semeval-2023/main/data/tso/train.tsv": "d566a1f6246de1a9f28acbdb7fb67d61115c0f99d1bee77f5251f0d9ac8c85bc",
+    "https://raw.githubusercontent.com/afrisenti-semeval/afrisent-semeval-2023/main/data/tso/dev.tsv": "101af3fbd8011f1a65bba75401bba67b5bf92d5703314da95d9db89109aea65f",
+    "https://raw.githubusercontent.com/afrisenti-semeval/afrisent-semeval-2023/main/data/tso/test.tsv": "8e36b83e1e076de1c216c862bc14e9163b099d3948ddce842268c074c5c7b4ec",
+    "https://raw.githubusercontent.com/google-research/google-research/master/goemotions/data/emotions.txt": "45c3ef86782d2a4d7fedcd6d8c111aa0d0e94720689bd164fac94fefb4495a89",
+    "https://raw.githubusercontent.com/google-research/google-research/master/goemotions/data/train.tsv": "1c254a142be5c00e80d819b9ae1bbd36d94b2eeb8f4b1271846508d57e57d9c5",
+    "https://raw.githubusercontent.com/google-research/google-research/master/goemotions/data/dev.tsv": "575489c079c9de1097062a01738f998590d6b7ead66dd1c9fd1d2ba01fd8bc62",
+    "https://raw.githubusercontent.com/google-research/google-research/master/goemotions/data/test.tsv": "0587b2dd8b27b97352adbfc3fb083d46005c8946657fdc2b1ca8b1cc7f1f8be4"
+  },
+  "limitations": "Social media domain, Xitsonga corpus from Mozambique; not South African customer-service validation. No calibrated probability claims. Emotion English only. No raw texts redistributed."
+}
