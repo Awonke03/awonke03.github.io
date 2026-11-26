@@ -10,3 +10,13 @@ assert.deepEqual(csvParse('text,language\n"hello, world",en\n"a""b",ts'),[['text
 assert.ok(quote('=2+2').startsWith('"\''));
 assert.equal(splitClauses('The app is great but fees are high').length,2);
 console.log('Portable model parity, inference and CSV checks passed.');
+
+import {newsUrl,newsRows,safeUrl,explainWords,searchNews} from '../sentiscope/web-intelligence.mjs';
+assert.equal(new URL(newsUrl('Vodacom',7)).searchParams.get('query'),'"Vodacom"');
+assert.equal(new URL(newsUrl('Vodacom',7)).searchParams.get('timespan'),'7d');
+assert.equal(safeUrl('javascript:alert(1)'),'');
+assert.equal(newsRows({articles:[{url:'https://example.org/a',title:'Actual headline',language:'French'},{url:'https://example.org/b',title:'Actual headline'},{url:'javascript:alert(1)',title:'Bad'}]}).length,1);
+const fake=async text=>[{label:'positive',score:text.includes('excellent')?.9:.2}];
+const e=await explainWords('excellent service','positive',fake);assert.ok(Math.abs(e.items[0].delta-.7)<1e-9);assert.equal(e.items[1].delta,0);
+assert.equal((await searchNews('Vodacom',30,async()=>({ok:true,text:async()=>JSON.stringify({articles:[{url:'https://example.org/a',title:'Headline'}]})}))).length,1);
+console.log('News parsing, URL safety and perturbation attribution tests passed.');

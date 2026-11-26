@@ -6,6 +6,9 @@ on:
     paths:
       - 'sentiscope-research/train.py'
       - 'sentiscope/engine.mjs'
+      - 'sentiscope/web-intelligence.mjs'
+      - 'sentiscope-research/test.mjs'
+      - 'sentiscope-research/browser.py'
       - 'sentiscope/app.mjs'
       - 'sentiscope/index.html'
       - '.github/workflows/sentiscope.yml'
@@ -30,7 +33,7 @@ jobs:
         with:
           node-version: "22"
       - run: pip install numpy==2.2.6 scipy==1.15.3 scikit-learn==1.6.1 playwright==1.52.0
-      - run: node --check sentiscope/app.mjs && node --check sentiscope/engine.mjs
+      - run: node --check sentiscope/app.mjs && node --check sentiscope/engine.mjs && node --check sentiscope/web-intelligence.mjs
       # Historical compact-model training is manual; the app uses pretrained multilingual sentiment.
       - if: github.event_name == 'workflow_dispatch'
         run: python sentiscope-research/train.py
