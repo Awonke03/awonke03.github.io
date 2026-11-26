@@ -1,4 +1,4 @@
-# SentiScope
+# Semantica
 
 Static application with genuine client-side inference. Serve the repo root using `python -m http.server 8765` and open /sentiscope/. Run training using the pinned dependencies in the GitHub Actions workflow. No API key required. Model weights are published after parity and browser tests. Multilingual DistilBERT is the sole active sentiment classifier for individual and bulk inputs. Transformers download quantized ONNX files into the browser. They require memory, network and time on first use. No text is intentionally sent to an inference API. Third-party scripts and model hosts receive normal download requests.
 
